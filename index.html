@@ -108,7 +108,7 @@
     <p>Semoga hidupmu semanis tawa kamu, secerah senyummu, dan sehangat pelukku nanti hehehe 💞💞</p>
   </div>
 
-  <!-- Autoplay YouTube (pakai lagu dari link terbaru) -->
+ <!-- Autoplay YouTube (pakai lagu dari link terbaru) -->
   <iframe class="hidden-audio"
     id="birthday-music"
     src="https://www.youtube.com/embed/4ycZVia4KqI?autoplay=1&mute=0&loop=1&playlist=4ycZVia4KqI&controls=0&modestbranding=1&showinfo=0"
@@ -118,10 +118,16 @@
   </iframe>
 
   <script>
-    // Fungsi untuk memulai ulang video ketika tab dibuka
+    // Memastikan video dimulai pada saat halaman dimuat dan ketika tab diaktifkan kembali
+    window.onload = function() {
+      var iframe = document.getElementById('birthday-music');
+      iframe.src = iframe.src; // Memuat ulang iframe untuk memulai video
+    };
+
+    // Fungsi untuk memulai ulang video ketika tab dibuka kembali
     window.onfocus = function() {
       var iframe = document.getElementById('birthday-music');
-      iframe.src = iframe.src;  // Memuat ulang video
+      iframe.src = iframe.src;  // Memuat ulang video untuk memulai ulang
     };
     // Untuk menampilkan balloon dan heart animasi
     for (let i = 0; i < 30; i++) {
