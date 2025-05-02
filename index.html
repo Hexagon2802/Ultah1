@@ -49,13 +49,6 @@
       line-height: 1.6em;
     }
 
-    iframe.hidden-audio {
-      width: 0;
-      height: 0;
-      visibility: hidden;
-      position: absolute;
-    }
-
     .balloon {
       position: absolute;
       bottom: -80px;
@@ -108,28 +101,19 @@
     <p>Semoga hidupmu semanis tawa kamu, secerah senyummu, dan sehangat pelukku nanti hehehe 💞💞</p>
   </div>
 
- 
-  <!-- Autoplay YouTube (pakai lagu dari link terbaru) -->
-  <iframe class="hidden-audio"
-    id="birthday-music"
-    src="https://www.youtube.com/embed/4ycZVia4KqI?autoplay=1&mute=0&loop=1&playlist=4ycZVia4KqI&controls=0&modestbranding=1&showinfo=0"
-    frameborder="0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen>
-  </iframe>
+  <!-- Memasukkan file MP3 yang dihosting di Google Drive -->
+  <audio id="birthday-audio" autoplay loop>
+    <source src="https://drive.google.com/uc?export=download&id=1VaT_ksNZNC3yk-SnVgLJuV0TzOdMjMoD" type="audio/mp3">
+    Browsermu tidak mendukung elemen audio.
+  </audio>
 
   <script>
-    // Memastikan video dimulai pada saat halaman dimuat dan ketika tab diaktifkan kembali
+    // Memastikan audio dimulai saat halaman dimuat
     window.onload = function() {
-      var iframe = document.getElementById('birthday-music');
-      iframe.src = iframe.src; // Memuat ulang iframe untuk memulai video
+      var audio = document.getElementById('birthday-audio');
+      audio.play();  // Memulai musik saat halaman dimuat
     };
 
-    // Fungsi untuk memulai ulang video ketika tab dibuka kembali
-    window.onfocus = function() {
-      var iframe = document.getElementById('birthday-music');
-      iframe.src = iframe.src;  // Memuat ulang video untuk memulai ulang
-    };
     // Untuk menampilkan balloon dan heart animasi
     for (let i = 0; i < 30; i++) {
       let b = document.createElement('div');
