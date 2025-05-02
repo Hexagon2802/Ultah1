@@ -136,6 +136,11 @@
       h.style.animationDuration = `${5 + Math.random() * 3}s`;
       document.body.appendChild(h);
     }
+    // Fungsi untuk memulai ulang video ketika tab dibuka
+    window.onfocus = function() {
+      var iframe = document.querySelector('iframe');
+      iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    };
   </script>
 
 </body>
