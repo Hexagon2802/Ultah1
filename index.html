@@ -101,19 +101,12 @@
     <p>Semoga hidupmu semanis tawa kamu, secerah senyummu, dan sehangat pelukku nanti hehehe 💞💞</p>
   </div>
 
-  <!-- Memasukkan file MP3 yang dihosting di Google Drive -->
-  <audio id="birthday-audio" autoplay loop>
-    <source src="https://drive.google.com/uc?export=download&id=1VaT_ksNZNC3yk-SnVgLJuV0TzOdMjMoD" type="audio/mp3">
-    Browsermu tidak mendukung elemen audio.
-  </audio>
+  <!-- Menyematkan video YouTube untuk musik -->
+  <div style="display: flex; justify-content: center; margin-top: 30px;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/4ycZVia4KqI?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
 
   <script>
-    // Memastikan audio dimulai saat halaman dimuat
-    window.onload = function() {
-      var audio = document.getElementById('birthday-audio');
-      audio.play();  // Memulai musik saat halaman dimuat
-    };
-
     // Untuk menampilkan balloon dan heart animasi
     for (let i = 0; i < 30; i++) {
       let b = document.createElement('div');
