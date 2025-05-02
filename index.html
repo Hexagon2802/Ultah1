@@ -49,6 +49,13 @@
       line-height: 1.6em;
     }
 
+    iframe.hidden-audio {
+      width: 0;
+      height: 0;
+      visibility: hidden;
+      position: absolute;
+    }
+
     .balloon {
       position: absolute;
       bottom: -80px;
@@ -101,13 +108,16 @@
     <p>Semoga hidupmu semanis tawa kamu, secerah senyummu, dan sehangat pelukku nanti hehehe 💞💞</p>
   </div>
 
-  <!-- Menyematkan video YouTube untuk musik -->
-  <div style="display: flex; justify-content: center; margin-top: 30px;">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/4ycZVia4KqI?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-  </div>
+  <!-- Autoplay YouTube (pakai lagu dari link terbaru) -->
+  <iframe class="hidden-audio"
+    src="https://www.youtube.com/embed/4ycZVia4KqI?autoplay=1&mute=0&loop=1&playlist=4ycZVia4KqI&controls=0&modestbranding=1&showinfo=0"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen
+    style="display:none;">
+  </iframe>
 
   <script>
-    // Untuk menampilkan balloon dan heart animasi
     for (let i = 0; i < 30; i++) {
       let b = document.createElement('div');
       b.className = 'balloon';
@@ -126,6 +136,11 @@
       h.style.animationDuration = ${5 + Math.random() * 3}s;
       document.body.appendChild(h);
     }
+    // Fungsi untuk memulai ulang video ketika tab dibuka
+    window.onfocus = function() {
+      var iframe = document.querySelector('iframe');
+      iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    };
   </script>
 
 </body>
