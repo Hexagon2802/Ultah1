@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Selamat Ulang Tahun Cinta!</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to top, #fff0f5, #ffffff);
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.8em;
+      color: #e91e63;
+      margin-top: 60px;
+    }
+
+    .foto {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 230px;
+      padding: 10px;
+      border: 6px solid #ffb6c1;
+      border-radius: 25px;
+      background: #fff5fa;
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
+      text-align: center;
+    }
+
+    .foto img {
+      width: 200px;
+      border-radius: 20px;
+    }
+
+    .ucapan-bawah {
+      position: absolute;
+      top: calc(50% + 170px);
+      width: 100%;
+      text-align: center;
+      font-size: 1.2em;
+      color: #ff69b4;
+      text-shadow: 1px 1px white;
+      padding: 0 20px;
+      line-height: 1.6em;
+    }
+
+    iframe.hidden-audio {
+      width: 0;
+      height: 0;
+      visibility: hidden;
+      position: absolute;
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -80px;
+      width: 40px;
+      height: 60px;
+      background-color: red;
+      border-radius: 50% 50% 45% 45%;
+      animation: float 8s linear infinite;
+    }
+
+    .balloon::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background: #555;
+      transform: translateX(-50%);
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 2em;
+      color: pink;
+      animation: floatHeart 6s ease-in infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-120vh); opacity: 0; }
+    }
+
+    @keyframes floatHeart {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-120vh) scale(1.5); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Happyy Birthdayy Sayangkuu Cintakuu 🎂💕</h1>
+
+  <div class="foto">
+    <img src="https://i.imgur.com/Nbl8kGj.jpeg" alt="Foto Pacar">
+  </div>
+
+  <div class="ucapan-bawah">
+    <p>Dunia aku jadi lebih indah karena kamu lahir &lt;3</p>
+    <p>Semoga hidupmu semanis tawa kamu, secerah senyummu, dan sehangat pelukku nanti hehehe 💞💞</p>
+  </div>
+
+  <!-- Autoplay YouTube (pakai lagu dari link terbaru) -->
+  <iframe class="hidden-audio"
+    src="https://www.youtube.com/embed/4ycZVia4KqI?autoplay=1&mute=1&loop=1&playlist=4ycZVia4KqI"
+    frameborder="0"
+    allow="autoplay"
+    allowfullscreen>
+  </iframe>
+
+  <script>
+    for (let i = 0; i < 30; i++) {
+      let b = document.createElement('div');
+      b.className = 'balloon';
+      b.style.left = `${Math.random() * 100}vw`;
+      b.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 70%)`;
+      b.style.animationDuration = `${6 + Math.random() * 4}s`;
+      document.body.appendChild(b);
+    }
+
+    for (let i = 0; i < 20; i++) {
+      let h = document.createElement('div');
+      h.className = 'heart';
+      h.innerHTML = '💖';
+      h.style.left = `${Math.random() * 100}vw`;
+      h.style.top = `${100 + Math.random() * 500}px`;
+      h.style.animationDuration = `${5 + Math.random() * 3}s`;
+      document.body.appendChild(h);
+    }
+  </script>
+
+</body>
+</html>
