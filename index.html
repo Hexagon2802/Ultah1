@@ -41,7 +41,7 @@
 
     .ucapan-bawah {
       position: absolute;
-      top: calc(50% + 170px);
+      top: calc(50% + 190px); /* Memberikan jarak tambahan antara foto dan teks */
       width: 100%;
       text-align: center;
       font-size: 1.2em;
@@ -49,6 +49,37 @@
       text-shadow: 1px 1px white;
       padding: 0 20px;
       line-height: 1.6em;
+    }
+
+    /* Modal Style */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+      z-index: 1; /* Sit on top of everything else */
+      padding-top: 100px;
+      text-align: center;
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 15px;
+    }
+
+    .modal button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 1.1em;
+      cursor: pointer;
     }
 
     /* Animasi balon dan hati */
@@ -128,42 +159,93 @@
         height: 200px;
       }
     }
+
+    /* Move SoundCloud player further down to make it less visible */
+    #soundcloudPlayer {
+      position: fixed;
+      bottom: -100px; /* Move player further down */
+      left: 0;
+      width: 200px; /* Reduced size */
+      height: 40px; /* Small player height */
+      background-color: pink; /* Hidden behind a pink background */
+      z-index: -1; /* Keep behind other content */
+      border-radius: 10px;
+    }
+
   </style>
 </head>
 <body>
 
-  <h1>Happyy Birthdayy Sayangkuu Cintakuu 🎂💕</h1>
-
-  <div class="foto">
-    <img src="https://i.imgur.com/Nbl8kGj.jpeg" alt="Foto Pacar">
+  <!-- Modal for Music Background -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <p>Are you sure to play music in background?</p>
+      <button id="yesBtn">Yes</button>
+      <button id="noBtn">No</button>
+    </div>
   </div>
 
-  <div class="ucapan-bawah">
-    <p>Dunia aku jadi lebih indah karena kamu lahir &lt;3</p>
-    <p>Semoga hidupmu semanis tawa kamu, secerah senyummu, dan sehangat pelukku nanti hehehe 💞💞</p>
+  <!-- First Slide Content -->
+  <div id="firstSlide">
+    <!-- First Slide content can be added here if needed -->
   </div>
 
-  <!-- Hapus bagian YouTube -->
-  <!-- Menampilkan balon dan hati animasi -->
+  <!-- Second Slide Content (hidden initially) -->
+  <div id="secondSlide" style="display: none;">
+    <h1>Happyy Birthdayy Sayangkuu Cintakuu 🎂💕</h1>
+    <div class="foto">
+      <img src="https://i.imgur.com/Nbl8kGj.jpeg" alt="Foto Pacar">
+    </div>
+    <div class="ucapan-bawah">
+      <p>Dunia aku jadi lebih indah tau karena kamu lahir &lt;3</p>
+      <p>Semoga hidupmu semanis tawa kamu, secerah senyummu, dan sehangat pelukku hehehe 💞</p>
+    </div>
+  </div>
+
+  <!-- SoundCloud Happy Birthday Dance music (without autoplay) -->
+  <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" id="soundcloudPlayer" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1628352795&color=%23ff5500&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=true&visual=false"></iframe>
+
+  <!-- JavaScript to handle modal and transition -->
   <script>
-    for (let i = 0; i < 30; i++) {
-      let b = document.createElement('div');
-      b.className = 'balloon';
-      b.style.left = `${Math.random() * 100}vw`;
-      b.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 70%)`;
-      b.style.animationDuration = `${6 + Math.random() * 4}s`;
-      document.body.appendChild(b);
-    }
+    // Show modal on load
+    window.onload = function() {
+      document.getElementById("myModal").style.display = "block";
+    };
 
-    for (let i = 0; i < 20; i++) {
-      let h = document.createElement('div');
-      h.className = 'heart';
-      h.innerHTML = '💖';
-      h.style.left = `${Math.random() * 100}vw`;
-      h.style.top = `${100 + Math.random() * 500}px`;
-      h.style.animationDuration = `${5 + Math.random() * 3}s`;
-      document.body.appendChild(h);
-    }
+    // Handle "Yes" button click
+    document.getElementById("yesBtn").onclick = function() {
+      document.getElementById("myModal").style.display = "none";  // Close modal
+      // Start playing the Happy Birthday Dance music from SoundCloud
+      document.getElementById("soundcloudPlayer").style.display = "block";  // Start playing the hidden player
+      document.getElementById("soundcloudPlayer").src += "&auto_play=true";  // Add autoplay to the iframe URL
+      document.getElementById("firstSlide").style.display = "none";
+      document.getElementById("secondSlide").style.display = "block"; // Show second slide
+
+      // Animating balloons and hearts (moved here so it happens after "Yes")
+      for (let i = 0; i < 30; i++) {
+        let b = document.createElement('div');
+        b.className = 'balloon';
+        b.style.left = `${Math.random() * 100}vw`;
+        b.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 70%)`;
+        b.style.animationDuration = `${6 + Math.random() * 4}s`;
+        document.body.appendChild(b);
+      }
+
+      for (let i = 0; i < 20; i++) {
+        let h = document.createElement('div');
+        h.className = 'heart';
+        h.innerHTML = '💖';
+        h.style.left = `${Math.random() * 100}vw`;
+        h.style.top = `${100 + Math.random() * 500}px`;
+        h.style.animationDuration = `${5 + Math.random() * 3}s`;
+        document.body.appendChild(h);
+      }
+    };
+
+    // Handle "No" button click - Keep modal open and prompt again
+    document.getElementById("noBtn").onclick = function() {
+      document.getElementById("myModal").style.display = "block";  // Keep modal open
+    };
   </script>
 
 </body>
