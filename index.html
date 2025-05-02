@@ -51,6 +51,11 @@
       line-height: 1.6em;
     }
 
+    /* Menyembunyikan bagian kedua sampai tombol diklik */
+    .hidden {
+      display: none;
+    }
+
     /* Animasi balon dan hati */
     .balloon {
       position: absolute;
@@ -90,21 +95,6 @@
       100% { transform: translateY(-120vh) scale(1.5); opacity: 0; }
     }
 
-    /* Media Query untuk tampilan desktop/laptop */
-    @media (min-width: 768px) {
-      h1 {
-        font-size: 3em;
-      }
-
-      .foto {
-        width: 300px;
-      }
-
-      .foto img {
-        width: 250px;
-      }
-    }
-
     /* Media Query untuk tampilan ponsel */
     @media (max-width: 767px) {
       h1 {
@@ -132,41 +122,58 @@
 </head>
 <body>
 
-  <h1>Happyy Birthdayy Sayangkuu Cintakuu 🎂💕</h1>
-
-  <div class="foto">
-    <img src="https://i.imgur.com/Nbl8kGj.jpeg" alt="Foto Pacar">
+  <!-- Bagian pertama: Tombol untuk melanjutkan -->
+  <div id="landing-page">
+    <h1>Selamat Ulang Tahun Sayang! 🎉</h1>
+    <button onclick="showNextPage()" style="padding: 15px 30px; font-size: 1.2em; color: white; background-color: #e91e63; border: none; border-radius: 10px; cursor: pointer;">Klik untuk Melanjutkan</button>
   </div>
 
-  <div class="ucapan-bawah">
-    <p>Dunia aku jadi lebih indah karena kamu lahir &lt;3</p>
-    <p>Semoga hidupmu semanis tawa kamu, secerah senyummu, dan sehangat pelukku nanti hehehe 💞💞</p>
+  <!-- Bagian kedua: Ucapan dan musik (disembunyikan awalnya) -->
+  <div id="celebration-page" class="hidden">
+    <h1>Happyy Birthdayy Sayangkuu Cintakuu 🎂💕</h1>
+
+    <div class="foto">
+      <img src="https://i.imgur.com/Nbl8kGj.jpeg" alt="Foto Pacar">
+    </div>
+
+    <div class="ucapan-bawah">
+      <p>Dunia aku jadi lebih indah karena kamu lahir &lt;3</p>
+      <p>Semoga hidupmu semanis tawa kamu, secerah senyummu, dan sehangat pelukku nanti hehehe 💞💞</p>
+    </div>
+
+    <!-- Menyematkan video YouTube untuk musik -->
+    <div style="display: flex; justify-content: center; margin-top: 30px;">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/4ycZVia4KqI?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <!-- Menampilkan balon dan hati -->
+    <script>
+      for (let i = 0; i < 30; i++) {
+        let b = document.createElement('div');
+        b.className = 'balloon';
+        b.style.left = `${Math.random() * 100}vw`;
+        b.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 70%)`;
+        b.style.animationDuration = `${6 + Math.random() * 4}s`;
+        document.body.appendChild(b);
+      }
+
+      for (let i = 0; i < 20; i++) {
+        let h = document.createElement('div');
+        h.className = 'heart';
+        h.innerHTML = '💖';
+        h.style.left = `${Math.random() * 100}vw`;
+        h.style.top = `${100 + Math.random() * 500}px`;
+        h.style.animationDuration = `${5 + Math.random() * 3}s`;
+        document.body.appendChild(h);
+      }
+    </script>
   </div>
 
-  <!-- Menyematkan video YouTube untuk musik -->
-  <div style="display: flex; justify-content: center; margin-top: 30px;">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/4ycZVia4KqI?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-  </div>
-
+  <!-- JavaScript untuk menampilkan halaman kedua setelah tombol diklik -->
   <script>
-    // Untuk menampilkan balloon dan heart animasi
-    for (let i = 0; i < 30; i++) {
-      let b = document.createElement('div');
-      b.className = 'balloon';
-      b.style.left = `${Math.random() * 100}vw`;
-      b.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 70%)`;
-      b.style.animationDuration = `${6 + Math.random() * 4}s`;
-      document.body.appendChild(b);
-    }
-
-    for (let i = 0; i < 20; i++) {
-      let h = document.createElement('div');
-      h.className = 'heart';
-      h.innerHTML = '💖';
-      h.style.left = `${Math.random() * 100}vw`;
-      h.style.top = `${100 + Math.random() * 500}px`;
-      h.style.animationDuration = `${5 + Math.random() * 3}s`;
-      document.body.appendChild(h);
+    function showNextPage() {
+      document.getElementById("landing-page").style.display = "none"; // Menyembunyikan halaman pertama
+      document.getElementById("celebration-page").classList.remove("hidden"); // Menampilkan halaman kedua
     }
   </script>
 
