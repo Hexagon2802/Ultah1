@@ -110,14 +110,20 @@
 
   <!-- Autoplay YouTube (pakai lagu dari link terbaru) -->
   <iframe class="hidden-audio"
+    id="birthday-music"
     src="https://www.youtube.com/embed/4ycZVia4KqI?autoplay=1&mute=0&loop=1&playlist=4ycZVia4KqI&controls=0&modestbranding=1&showinfo=0"
     frameborder="0"
     allow="autoplay; encrypted-media"
-    allowfullscreen
-    style="display:none;">
+    allowfullscreen>
   </iframe>
 
   <script>
+    // Fungsi untuk memulai ulang video ketika tab dibuka
+    window.onfocus = function() {
+      var iframe = document.getElementById('birthday-music');
+      iframe.src = iframe.src;  // Memuat ulang video
+    };
+    // Untuk menampilkan balloon dan heart animasi
     for (let i = 0; i < 30; i++) {
       let b = document.createElement('div');
       b.className = 'balloon';
@@ -136,11 +142,6 @@
       h.style.animationDuration = `${5 + Math.random() * 3}s`;
       document.body.appendChild(h);
     }
-    // Fungsi untuk memulai ulang video ketika tab dibuka
-    window.onfocus = function() {
-      var iframe = document.querySelector('iframe');
-      iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-    };
   </script>
 
 </body>
